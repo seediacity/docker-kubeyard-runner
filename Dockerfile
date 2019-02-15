@@ -12,4 +12,14 @@ RUN apk add --no-cache \
     rm -r /root/.cache
 
 RUN pip install --no-cache-dir kubeyard==0.2.3
-CMD ['bash']
+
+ENV KUBE_VERSION="v1.9.4"
+ENV HELM_VERSION="v2.8.2"
+
+RUN apk add --no-cache ca-certificates \
+    && wget -q https://storage.googleapis.com/kubernetes-release/release/${KUBE_VERSION}/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl \
+    && chmod +x /usr/local/bin/kubectl \
+    && wget -q https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz -O - | tar -xzO linux-amd64/helm > /usr/local/bin/helm \
+    && chmod +x /usr/local/bin/helm
+
+CMD bash
