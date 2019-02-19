@@ -2,6 +2,7 @@ FROM docker:18.09.2
 
 RUN apk add --no-cache \
     bash \
+    coreutils \
     git \
     python3 && \
     python3 -m ensurepip && \
