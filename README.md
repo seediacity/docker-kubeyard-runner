@@ -7,4 +7,5 @@ Basic image with installed [kubeyard](https://pypi.org/project/kubeyard/) based 
  - python3
  - pip 
  - kubectl
- - helm 
+ - helm
+ - gcloud
