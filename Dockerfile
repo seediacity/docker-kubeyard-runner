@@ -12,9 +12,9 @@ RUN apk add --no-cache \
     if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
     rm -r /root/.cache
 
-RUN pip install --no-cache-dir kubeyard==0.2.3
+RUN pip install --no-cache-dir kubeyard==0.4.0
 
-ENV KUBE_VERSION="v1.9.4"
+ENV KUBE_VERSION="v1.13.4"
 ENV HELM_VERSION="v2.5.1"
 RUN apk add --no-cache ca-certificates \
     && wget -q https://storage.googleapis.com/kubernetes-release/release/${KUBE_VERSION}/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl \
