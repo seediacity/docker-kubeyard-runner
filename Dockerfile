@@ -11,8 +11,6 @@ RUN apk add --no-cache \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
     if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi
 
-RUN pip install --no-cache-dir kubeyard==0.4.0
-
 ENV KUBE_VERSION="v1.13.4"
 ENV HELM_VERSION="v2.5.1"
 RUN apk add --no-cache ca-certificates \
@@ -41,12 +39,14 @@ RUN apk --no-cache add \
     gcloud config set metrics/environment github_docker_image && \
     gcloud --version
 
-ENV AZ_VERSION="2.0.62"
+ENV AZ_VERSION="2.0.67"
 
 RUN apk add --no-cache --virtual=build gcc python3-dev musl-dev libffi-dev openssl-dev make && \
     pip3 install --no-cache-dir azure-cli==${AZ_VERSION} && \
     apk del --purge build && \
     echo 'python3 -m azure.cli "$@"' >  /usr/bin/az
+
+RUN pip --no-cache-dir install git+https://github.com/seediacity/kubeyard@0.5.2.dev0+seedia
 
 VOLUME ["/root/.config"]
 CMD bash
