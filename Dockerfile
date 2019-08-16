@@ -46,7 +46,7 @@ RUN apk add --no-cache --virtual=build gcc python3-dev musl-dev libffi-dev opens
     apk del --purge build && \
     echo 'python3 -m azure.cli "$@"' >  /usr/bin/az
 
-RUN pip --no-cache-dir install git+https://github.com/seediacity/kubeyard@0.5.2.seedia0
+RUN pip --no-cache-dir install git+https://github.com/seediacity/kubeyard@0.5.2seedia1
 
 VOLUME ["/root/.config"]
 CMD bash
